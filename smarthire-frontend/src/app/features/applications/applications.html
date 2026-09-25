@@ -1,0 +1,310 @@
+<div class="applications-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Job Applications</h1>
+      <p>Track and manage your job applications</p>
+    </div>
+
+    <a routerLink="/dashboard" class="back-btn">← Dashboard</a>
+  </div>
+
+
+  <!-- Add Application -->
+
+  <div class="form-card">
+
+    <h2>Add New Application</h2>
+
+    <form
+      [formGroup]="applicationForm"
+      (ngSubmit)="addApplication()">
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label>Company</label>
+
+          <input
+            type="text"
+            formControlName="company"
+            placeholder="e.g. Google">
+
+          @if (
+            applicationForm.controls.company.touched &&
+            applicationForm.controls.company.invalid
+          ) {
+
+            <small class="error">
+              Company name is required.
+            </small>
+
+          }
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Job Role</label>
+
+          <input
+            type="text"
+            formControlName="role"
+            placeholder="e.g. Software Engineer">
+
+          @if (
+            applicationForm.controls.role.touched &&
+            applicationForm.controls.role.invalid
+          ) {
+
+            <small class="error">
+              Job role is required.
+            </small>
+
+          }
+
+        </div>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label>Application Date</label>
+
+          <input
+            type="date"
+            formControlName="date">
+
+          @if (
+            applicationForm.controls.date.touched &&
+            applicationForm.controls.date.invalid
+          ) {
+
+            <small class="error">
+              Application date is required.
+            </small>
+
+          }
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Status</label>
+
+          <select formControlName="status">
+
+            <option value="Applied">
+              Applied
+            </option>
+
+            <option value="Shortlisted">
+              Shortlisted
+            </option>
+
+            <option value="Interview">
+              Interview
+            </option>
+
+            <option value="Selected">
+              Selected
+            </option>
+
+            <option value="Rejected">
+              Rejected
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="add-btn"
+        [disabled]="applicationForm.invalid">
+
+        + Add Application
+
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <!-- Application List -->
+
+  <div class="list-card">
+
+    <div class="list-header">
+
+      <h2>My Applications</h2>
+
+      <span>
+        {{ applications.length }} Applications
+      </span>
+
+    </div>
+
+
+    @if (isLoading) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">⏳</div>
+
+        <h3>
+          Loading applications...
+        </h3>
+
+      </div>
+
+    }
+
+    @else if (errorMessage) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">⚠️</div>
+
+        <h3>
+          {{ errorMessage }}
+        </h3>
+
+        <button
+          type="button"
+          class="add-btn"
+          (click)="loadApplications()">
+
+          Try Again
+
+        </button>
+
+      </div>
+
+    }
+
+    @else if (applications.length === 0) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">💼</div>
+
+        <h3>
+          No applications yet
+        </h3>
+
+        <p>
+          Add your first job application above.
+        </p>
+
+      </div>
+
+    }
+
+    @else {
+
+      @for (
+        application of applications;
+        track application.id
+      ) {
+
+        <div class="application-item">
+
+
+          <!-- Company Icon -->
+
+          <div class="company-icon">
+
+            {{ application.company.charAt(0).toUpperCase() }}
+
+          </div>
+
+
+          <!-- Application Information -->
+
+          <div class="application-info">
+
+            <h3>
+              {{ application.company }}
+            </h3>
+
+            <p>
+              {{ application.role }}
+            </p>
+
+            <small>
+              Applied on {{ application.date }}
+            </small>
+
+          </div>
+
+
+          <!-- Update Status -->
+
+          <div class="status-container">
+
+            <label>
+              Status
+            </label>
+
+            <select
+              class="status-select"
+              [value]="application.status"
+              (change)="updateStatus(application.id, $event)">
+
+              <option value="Applied">
+                Applied
+              </option>
+
+              <option value="Shortlisted">
+                Shortlisted
+              </option>
+
+              <option value="Interview">
+                Interview
+              </option>
+
+              <option value="Selected">
+                Selected
+              </option>
+
+              <option value="Rejected">
+                Rejected
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Delete -->
+
+          <button
+            type="button"
+            class="delete-btn"
+            (click)="deleteApplication(application.id)">
+
+            Delete
+
+          </button>
+
+        </div>
+
+      }
+
+    }
+
+  </div>
+
+</div>
+

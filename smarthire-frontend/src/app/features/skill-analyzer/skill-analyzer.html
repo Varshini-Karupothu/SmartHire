@@ -1,0 +1,271 @@
+<div class="skill-page">
+
+  <!-- Header -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>Skill Analyzer</h1>
+      <p>
+        Compare your skills with the skills required for a job.
+      </p>
+    </div>
+
+    <a
+      routerLink="/dashboard"
+      class="back-btn">
+      ← Dashboard
+    </a>
+
+  </div>
+
+
+  <!-- Analyzer Card -->
+
+  <div class="analyzer-card">
+
+    <h2>Analyze Your Skills</h2>
+
+    <p class="description">
+      Enter the required job skills and your current skills,
+      separated by commas.
+    </p>
+
+
+    <!-- Job Skills -->
+
+    <div class="input-group">
+
+      <label>
+        Job Required Skills
+      </label>
+
+      <textarea
+        [(ngModel)]="jobSkills"
+        placeholder="Java, Spring Boot, SQL, Angular, Git">
+      </textarea>
+
+    </div>
+
+
+    <!-- My Skills -->
+
+    <div class="input-group">
+
+      <label>
+        My Skills
+      </label>
+
+      <textarea
+        [(ngModel)]="mySkills"
+        placeholder="Java, SQL, Git, Python">
+      </textarea>
+
+    </div>
+
+
+    <!-- Error -->
+
+    @if (errorMessage) {
+
+      <div class="error-message">
+        ⚠️ {{ errorMessage }}
+      </div>
+
+    }
+
+
+    <!-- Analyze Button -->
+
+    <button
+      class="analyze-btn"
+      type="button"
+      (click)="analyzeSkills()"
+      [disabled]="isLoading">
+
+      @if (isLoading) {
+        Analyzing...
+      } @else {
+        🔍 Analyze Skills
+      }
+
+    </button>
+
+  </div>
+
+
+  <!-- Result -->
+
+  @if (matchPercentage > 0 || matchedSkills.length > 0 || missingSkills.length > 0) {
+
+    <div class="result-card">
+
+      <div class="result-header">
+
+        <div>
+          <h2>Analysis Result</h2>
+          <p>
+            Based on the skills you entered
+          </p>
+        </div>
+
+        <div class="percentage">
+          {{ matchPercentage }}%
+        </div>
+
+      </div>
+
+
+      <!-- Progress -->
+
+      <div class="progress-container">
+
+        <div
+          class="progress-bar"
+          [style.width.%]="matchPercentage">
+        </div>
+
+      </div>
+
+
+      <!-- Skill Results -->
+
+      <div class="skill-results">
+
+
+        <!-- Matched -->
+
+        <div class="skill-section matched-section">
+
+          <h3>
+            ✅ Matched Skills
+          </h3>
+
+          @if (matchedSkills.length > 0) {
+
+            <div class="skill-list">
+
+              @for (skill of matchedSkills; track skill) {
+
+                <span class="skill matched">
+                  {{ skill }}
+                </span>
+
+              }
+
+            </div>
+
+          } @else {
+
+            <p class="no-skills">
+              No matching skills found.
+            </p>
+
+          }
+
+        </div>
+
+
+        <!-- Missing -->
+
+        <div class="skill-section missing-section">
+
+          <h3>
+            ⚠️ Missing Skills
+          </h3>
+
+          @if (missingSkills.length > 0) {
+
+            <div class="skill-list">
+
+              @for (skill of missingSkills; track skill) {
+
+                <span class="skill missing">
+                  {{ skill }}
+                </span>
+
+              }
+
+            </div>
+
+          } @else {
+
+            <p class="no-skills">
+              Great! No missing skills.
+            </p>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <!-- Previous Analyses -->
+
+  @if (previousAnalyses.length > 0) {
+
+    <div class="history-card">
+
+      <div class="history-header">
+
+        <div>
+          <h2>Previous Analyses</h2>
+          <p>
+            Your saved skill analysis results
+          </p>
+        </div>
+
+        <span class="history-count">
+          {{ previousAnalyses.length }} Saved
+        </span>
+
+      </div>
+
+
+      @for (
+        analysis of previousAnalyses;
+        track analysis.id
+      ) {
+
+        <div class="history-item">
+
+          <div class="history-info">
+
+            <h3>
+              Job Skills
+            </h3>
+
+            <p>
+              {{ analysis.jobSkills }}
+            </p>
+
+          </div>
+
+
+          <div class="history-score">
+
+            <strong>
+              {{ analysis.matchPercentage }}%
+            </strong>
+
+            <span>
+              Match
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</div>
+

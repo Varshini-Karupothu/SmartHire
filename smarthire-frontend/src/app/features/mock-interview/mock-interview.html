@@ -1,0 +1,418 @@
+<div class="mock-page">
+
+  <!-- Header -->
+  <div class="page-header">
+
+    <div>
+      <h1>🎤 Mock Interview</h1>
+
+      <p>
+        Practice interview questions and test your knowledge
+      </p>
+    </div>
+
+    <a
+      routerLink="/dashboard"
+      class="back-btn">
+
+      ← Dashboard
+
+    </a>
+
+  </div>
+
+
+  <!-- ================= SETUP ================= -->
+
+  @if (!started) {
+
+    <div class="setup-card">
+
+      <h2>
+        Start Your Mock Interview
+      </h2>
+
+      <p class="description">
+        Choose your preferences before starting the interview.
+      </p>
+
+
+      <div class="form-row">
+
+        <!-- Job Role -->
+        <div class="form-group">
+
+          <label>
+            Job Role
+          </label>
+
+          <select [(ngModel)]="role">
+
+            <option value="">
+              Select Role
+            </option>
+
+            <option value="Software Engineer">
+              Software Engineer
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Difficulty -->
+        <div class="form-group">
+
+          <label>
+            Difficulty
+          </label>
+
+          <select [(ngModel)]="difficulty">
+
+            <option value="">
+              Select Difficulty
+            </option>
+
+            <option value="Easy">
+              Easy
+            </option>
+
+            <option value="Medium">
+              Medium
+            </option>
+
+            <option value="Hard">
+              Hard
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- Topic -->
+      <div class="form-group">
+
+        <label>
+          Topic
+        </label>
+
+        <select [(ngModel)]="topic">
+
+          <option value="">
+            Select Topic
+          </option>
+
+          <option value="Java">
+            Java
+          </option>
+
+          <option value="SQL">
+            SQL
+          </option>
+
+          <option value="Spring Boot">
+            Spring Boot
+          </option>
+
+          <option value="Angular">
+            Angular
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Error Message -->
+      @if (errorMessage) {
+
+        <p class="error-message">
+          {{ errorMessage }}
+        </p>
+
+      }
+
+
+      <!-- Start Button -->
+      <button
+        class="start-btn"
+        (click)="startInterview()"
+        [disabled]="!role || !difficulty || !topic || loading">
+
+        @if (loading) {
+
+          ⏳ Loading Questions...
+
+        }
+
+        @else {
+
+          🚀 Start Interview
+
+        }
+
+      </button>
+
+    </div>
+
+  }
+
+
+  <!-- ================= QUESTIONS ================= -->
+
+  @else if (!completed) {
+
+    <div class="question-card">
+
+
+      <!-- Question Header -->
+      <div class="question-top">
+
+        <span>
+
+          Question
+          {{ currentQuestion + 1 }}
+          of
+          {{ questions.length }}
+
+        </span>
+
+
+        <span class="difficulty">
+
+          {{ difficulty }}
+
+        </span>
+
+      </div>
+
+
+      <!-- Progress -->
+      <div class="progress">
+
+        <div
+          class="progress-bar"
+          [style.width.%]="
+            ((currentQuestion + 1) / questions.length) * 100
+          ">
+        </div>
+
+      </div>
+
+
+      <!-- Question -->
+      <h2>
+
+        {{ questions[currentQuestion].question }}
+
+      </h2>
+
+
+      <!-- Answer -->
+      <textarea
+        [(ngModel)]="questions[currentQuestion].answer"
+        placeholder="Type your answer here...">
+      </textarea>
+
+
+      <!-- Error Message -->
+      @if (errorMessage) {
+
+        <p class="error-message">
+
+          {{ errorMessage }}
+
+        </p>
+
+      }
+
+
+      <!-- Next Question -->
+      @if (currentQuestion < questions.length - 1) {
+
+        <button
+          class="next-btn"
+          (click)="nextQuestion()">
+
+          Next Question →
+
+        </button>
+
+      }
+
+
+      <!-- Finish Interview -->
+      @else {
+
+        <button
+          class="next-btn"
+          (click)="finishInterview()"
+          [disabled]="evaluating">
+
+          @if (evaluating) {
+
+            ⏳ Calculating Score...
+
+          }
+
+          @else {
+
+            Finish Interview ✓
+
+          }
+
+        </button>
+
+      }
+
+    </div>
+
+  }
+
+
+  <!-- ================= RESULT ================= -->
+
+  @else {
+
+    <div class="result-card">
+
+
+      <!-- Result Icon -->
+      <div class="result-icon">
+
+        🏆
+
+      </div>
+
+
+      <!-- Title -->
+      <h2>
+
+        Interview Completed!
+
+      </h2>
+
+
+      <p>
+
+        Your overall mock interview score
+
+      </p>
+
+
+      <!-- Score -->
+      <div class="score">
+
+        {{ score }}
+
+        <span>
+          /100
+        </span>
+
+      </div>
+
+
+      <!-- Score Message -->
+      <p class="result-message">
+
+        {{ getScoreMessage() }}
+
+      </p>
+
+
+      <!-- ================= QUESTION FEEDBACK ================= -->
+
+      <div class="question-results">
+
+        <h3>
+
+          Question-wise Feedback
+
+        </h3>
+
+
+        @for (
+          question of questions;
+          track question.id;
+          let i = $index
+        ) {
+
+          <div class="result-item">
+
+
+            <!-- Question Number + Score -->
+            <div class="result-question">
+
+              <strong>
+
+                Question {{ i + 1 }}
+
+              </strong>
+
+
+              <span>
+
+                {{ getResult(question.id)?.score || 0 }}/100
+
+              </span>
+
+            </div>
+
+
+            <!-- Question Text -->
+            <p class="question-text">
+
+              {{ question.question }}
+
+            </p>
+
+
+            <!-- Feedback -->
+            <p class="feedback">
+
+              {{ getResult(question.id)?.feedback || 'No feedback available.' }}
+
+            </p>
+
+
+            <!-- Missing Concepts -->
+            @if (hasMissingKeywords(question.id)) {
+
+              <p class="missing">
+
+                <strong>
+                  Missing concepts:
+                </strong>
+
+                {{ getResult(question.id)?.missingKeywords?.join(', ') }}
+
+              </p>
+
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- Try Again -->
+      <button
+        class="restart-btn"
+        (click)="restartInterview()">
+
+        🔄 Try Again
+
+      </button>
+
+    </div>
+
+  }
+
+</div>
+

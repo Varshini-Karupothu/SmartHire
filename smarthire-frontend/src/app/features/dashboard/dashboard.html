@@ -1,0 +1,212 @@
+<div class="dashboard">
+
+  <!-- Header -->
+  <header class="header">
+
+    <div>
+      <h1>SmartHire</h1>
+      <p>Welcome back! 👋</p>
+    </div>
+
+    <button
+      class="logout-btn"
+      type="button"
+      (click)="logout()">
+
+      Logout
+
+    </button>
+
+  </header>
+
+
+  <!-- Statistics -->
+  <section class="stats">
+
+    <div class="stat-card">
+
+      <div class="icon">💼</div>
+
+      <div>
+        <h3>{{ totalApplications }}</h3>
+        <p>Applications</p>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="icon">📅</div>
+
+      <div>
+        <h3>{{ totalInterviews }}</h3>
+        <p>Interviews</p>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="icon">⭐</div>
+
+      <div>
+        <h3>{{ selectedApplications }}</h3>
+        <p>Selected</p>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="icon">❌</div>
+
+      <div>
+        <h3>{{ rejectedApplications }}</h3>
+        <p>Rejected</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Main Content -->
+  <section class="content">
+
+
+    <!-- Recent Applications -->
+    <div class="card">
+
+      <div class="card-header">
+
+        <h2>Recent Applications</h2>
+
+        <a
+          routerLink="/applications"
+          class="view-btn">
+
+          View All
+
+        </a>
+
+      </div>
+
+
+      @if (recentApplications.length === 0) {
+
+        <div class="empty-state">
+
+          <p>No applications yet.</p>
+
+        </div>
+
+      } @else {
+
+        @for (
+          application of recentApplications;
+          track application.id
+        ) {
+
+          <div class="application">
+
+            <div>
+
+              <h3>
+                {{ application.company }}
+              </h3>
+
+              <p>
+                {{ application.role }}
+              </p>
+
+            </div>
+
+
+            <span
+              class="status"
+              [class.applied]="application.status === 'Applied'"
+              [class.shortlisted]="application.status === 'Shortlisted'"
+              [class.interview]="application.status === 'Interview'"
+              [class.selected]="application.status === 'Selected'"
+              [class.rejected]="application.status === 'Rejected'">
+
+              {{ application.status }}
+
+            </span>
+
+          </div>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- Upcoming Interviews -->
+    <div class="card">
+
+      <div class="card-header">
+
+        <h2>Upcoming Interviews</h2>
+
+        <a
+          routerLink="/interviews"
+          class="view-btn">
+
+          View All
+
+        </a>
+
+      </div>
+
+
+      @if (upcomingInterviews.length === 0) {
+
+        <div class="empty-state">
+
+          <p>No upcoming interviews.</p>
+
+        </div>
+
+      } @else {
+
+        @for (
+          interview of upcomingInterviews;
+          track interview.id
+        ) {
+
+          <div class="interview">
+
+            <div>
+
+              <h3>
+                {{ interview.company }}
+              </h3>
+
+              <p>
+                {{ interview.round }}
+              </p>
+
+            </div>
+
+            <strong>
+              {{ interview.date }}
+            </strong>
+
+          </div>
+
+        }
+
+      }
+
+    </div>
+
+
+  </section>
+
+</div>
+

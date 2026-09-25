@@ -1,0 +1,543 @@
+/* =========================================
+   SMART HIRE - DASHBOARD
+   Professional Modern UI
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7ff 0%, #eef4ff 100%);
+  padding: 35px 50px 60px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1e293b;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.header p {
+  color: #64748b;
+  margin: 7px 0 0;
+  font-size: 15px;
+}
+
+
+/* =========================================
+   LOGOUT BUTTON
+========================================= */
+
+.logout-btn {
+  background: #ffffff;
+  color: #334155;
+
+  border: 1px solid #dbe3f0;
+
+  padding: 11px 20px;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  color: #dc2626;
+  border-color: #fecaca;
+  background: #fef2f2;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.stats {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+
+.stat-card {
+  position: relative;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  padding: 23px;
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.06),
+    0 2px 5px rgba(15, 23, 42, 0.03);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.09),
+    0 3px 7px rgba(15, 23, 42, 0.04);
+}
+
+
+.icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eff6ff;
+
+  border-radius: 13px;
+
+  font-size: 27px;
+}
+
+
+.stat-card h3 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 27px;
+  font-weight: 700;
+}
+
+
+.stat-card p {
+  margin: 5px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1.5fr 1fr;
+
+  gap: 25px;
+}
+
+
+/* =========================================
+   COMMON CARD
+========================================= */
+
+.card {
+  background: rgba(255, 255, 255, 0.96);
+
+  padding: 26px;
+
+  border-radius: 16px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.06),
+    0 2px 5px rgba(15, 23, 42, 0.03);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.card-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.card-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 20px;
+
+  font-weight: 650;
+}
+
+.card-header button {
+  border: none;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  padding: 7px 12px;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.card-header button:hover {
+  background: #dbeafe;
+
+  color: #1d4ed8;
+}
+
+
+/* =========================================
+   APPLICATIONS
+========================================= */
+
+.application {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid #eef2f7;
+}
+
+.application:last-child {
+  border-bottom: none;
+}
+
+.application h3 {
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.application p {
+  margin: 5px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   INTERVIEWS
+========================================= */
+
+.interview {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid #eef2f7;
+}
+
+.interview:last-child {
+  border-bottom: none;
+}
+
+.interview h3 {
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.interview p {
+  margin: 5px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.interview strong {
+  color: #2563eb;
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.status {
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* Applied */
+
+.applied {
+  background: #e0f2fe;
+
+  color: #0369a1;
+}
+
+
+/* Shortlisted */
+
+.shortlisted {
+  background: #f3e8ff;
+
+  color: #7e22ce;
+}
+
+
+/* Interview */
+
+.interview .status,
+.status.interview {
+  background: #fef3c7;
+
+  color: #92400e;
+}
+
+
+/* Selected */
+
+.selected {
+  background: #dcfce7;
+
+  color: #166534;
+}
+
+
+/* Rejected */
+
+.rejected {
+  background: #fee2e2;
+
+  color: #b91c1c;
+}
+
+
+/* =========================================
+   VIEW BUTTON
+========================================= */
+
+.view-btn {
+  text-decoration: none;
+
+  border: none;
+
+  background: transparent;
+
+  color: #2563eb;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  padding: 6px 8px;
+
+  border-radius: 6px;
+
+  transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+  background: #eff6ff;
+
+  color: #1d4ed8;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+  text-align: center;
+
+  padding: 35px 20px;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .dashboard {
+    padding: 30px 25px 50px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .dashboard {
+    padding: 22px 15px 40px;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header h1 {
+    font-size: 27px;
+  }
+
+  .header p {
+    font-size: 13px;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .content {
+    gap: 18px;
+  }
+
+  .card {
+    padding: 21px 18px;
+  }
+
+  .card-header h2 {
+    font-size: 18px;
+  }
+
+  .application,
+  .interview {
+    align-items: flex-start;
+  }
+
+  .status {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+  .application,
+  .interview {
+    flex-direction: column;
+  }
+
+  .application > *,
+  .interview > * {
+    align-self: flex-start;
+  }
+
+  .view-btn {
+    padding-left: 0;
+  }
+}
+

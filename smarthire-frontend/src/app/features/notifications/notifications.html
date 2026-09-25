@@ -1,0 +1,110 @@
+<div class="notifications-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>🔔 Notifications</h1>
+      <p>Stay updated with your applications and interviews</p>
+    </div>
+
+    <a routerLink="/dashboard" class="back-btn">
+      ← Dashboard
+    </a>
+
+  </div>
+
+
+  @if (isLoading) {
+
+    <div class="empty-card">
+      <div class="loading-icon">⏳</div>
+      <h2>Loading notifications...</h2>
+    </div>
+
+  } @else if (errorMessage) {
+
+    <div class="empty-card error-card">
+
+      <div class="empty-icon">⚠️</div>
+
+      <h2>{{ errorMessage }}</h2>
+
+      <button
+        class="retry-btn"
+        (click)="loadNotifications()">
+        Try Again
+      </button>
+
+    </div>
+
+  } @else if (notifications.length === 0) {
+
+    <div class="empty-card">
+
+      <div class="empty-icon">🔔</div>
+
+      <h2>No notifications yet</h2>
+
+      <p>
+        You'll see interview reminders and application
+        updates here.
+      </p>
+
+    </div>
+
+  } @else {
+
+    <div class="notifications-list">
+
+      @for (
+        notification of notifications;
+        track notification.id
+      ) {
+
+        <div
+          class="notification-card"
+          [class.unread]="!notification.read"
+          (click)="markAsRead(notification)">
+
+          <div class="notification-icon">
+            🔔
+          </div>
+
+          <div class="notification-content">
+
+            <div class="notification-top">
+
+              <h3>
+                {{ notification.title }}
+              </h3>
+
+              @if (!notification.read) {
+
+                <span class="new-badge">
+                  NEW
+                </span>
+
+              }
+
+            </div>
+
+            <p>
+              {{ notification.message }}
+            </p>
+
+            <span class="notification-time">
+              {{ notification.createdAt }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</div>
+

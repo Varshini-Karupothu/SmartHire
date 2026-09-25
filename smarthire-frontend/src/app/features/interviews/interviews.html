@@ -1,0 +1,212 @@
+<div class="interviews-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Interview Management</h1>
+      <p>Schedule and track your upcoming interviews</p>
+    </div>
+
+    <a routerLink="/dashboard" class="back-btn">← Dashboard</a>
+  </div>
+
+  <!-- Add Interview -->
+
+  <div class="form-card">
+
+    <h2>Schedule New Interview</h2>
+
+    <form [formGroup]="interviewForm" (ngSubmit)="addInterview()">
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Company</label>
+
+          <input
+            type="text"
+            formControlName="company"
+            placeholder="e.g. TCS">
+
+          @if (interviewForm.controls.company.touched &&
+               interviewForm.controls.company.invalid) {
+            <small class="error">
+              Company name is required.
+            </small>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Job Role</label>
+
+          <input
+            type="text"
+            formControlName="role"
+            placeholder="e.g. Java Developer">
+
+          @if (interviewForm.controls.role.touched &&
+               interviewForm.controls.role.invalid) {
+            <small class="error">
+              Job role is required.
+            </small>
+          }
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Interview Round</label>
+
+          <select formControlName="round">
+            <option value="HR Round">HR Round</option>
+            <option value="Technical Round">Technical Round</option>
+            <option value="Coding Round">Coding Round</option>
+            <option value="Managerial Round">Managerial Round</option>
+            <option value="Final Round">Final Round</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Date</label>
+
+          <input
+            type="date"
+            formControlName="date">
+
+          @if (interviewForm.controls.date.touched &&
+               interviewForm.controls.date.invalid) {
+            <small class="error">
+              Interview date is required.
+            </small>
+          }
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Time</label>
+
+          <input
+            type="time"
+            formControlName="time">
+
+          @if (interviewForm.controls.time.touched &&
+               interviewForm.controls.time.invalid) {
+            <small class="error">
+              Interview time is required.
+            </small>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Feedback / Notes</label>
+
+          <input
+            type="text"
+            formControlName="feedback"
+            placeholder="Optional notes">
+        </div>
+
+      </div>
+
+      <button
+        type="submit"
+        class="add-btn"
+        [disabled]="interviewForm.invalid">
+        + Schedule Interview
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <!-- Interview List -->
+
+  <div class="list-card">
+
+    <div class="list-header">
+      <h2>My Interviews</h2>
+      <span>{{ interviews.length }} Interviews</span>
+    </div>
+
+    @if (isLoading) {
+
+      <div class="empty-state">
+        <div class="empty-icon">⏳</div>
+        <h3>Loading interviews...</h3>
+      </div>
+
+    } @else if (errorMessage) {
+
+      <div class="empty-state">
+        <div class="empty-icon">⚠️</div>
+
+        <h3>{{ errorMessage }}</h3>
+
+        <button
+          type="button"
+          class="add-btn"
+          (click)="loadInterviews()">
+          Try Again
+        </button>
+
+      </div>
+
+    } @else if (interviews.length === 0) {
+
+      <div class="empty-state">
+        <div class="empty-icon">📅</div>
+        <h3>No interviews scheduled</h3>
+        <p>Schedule your first interview above.</p>
+      </div>
+
+    } @else {
+
+      @for (interview of interviews; track interview.id) {
+
+        <div class="interview-item">
+
+          <div class="company-icon">
+            {{ interview.company.charAt(0).toUpperCase() }}
+          </div>
+
+          <div class="interview-info">
+
+            <h3>{{ interview.company }}</h3>
+
+            <p>{{ interview.role }}</p>
+
+            <small>
+              {{ interview.round }} •
+              {{ interview.date }} at
+              {{ interview.time }}
+            </small>
+
+            @if (interview.feedback) {
+              <p class="feedback">
+                📝 {{ interview.feedback }}
+              </p>
+            }
+
+          </div>
+
+          <button
+            type="button"
+            class="delete-btn"
+            (click)="deleteInterview(interview.id)">
+            Delete
+          </button>
+
+        </div>
+
+      }
+
+    }
+
+  </div>
+
+</div>

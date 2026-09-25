@@ -1,0 +1,521 @@
+/* =========================================
+   SMART HIRE - RESUME PAGE
+   Professional Modern UI
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.resume-page {
+  min-height: 100vh;
+
+  background: linear-gradient(
+    135deg,
+    #f5f7ff 0%,
+    #eef4ff 100%
+  );
+
+  padding: 35px 50px 60px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #1e293b;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.page-header {
+  max-width: 1000px;
+
+  margin: 0 auto 30px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.page-header h1 {
+  margin: 0;
+
+  color: #1d4ed8;
+
+  font-size: 32px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.page-header p {
+  margin: 7px 0 0;
+
+  color: #64748b;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-btn {
+  text-decoration: none;
+
+  background: #ffffff;
+
+  color: #2563eb;
+
+  padding: 11px 18px;
+
+  border-radius: 10px;
+
+  border: 1px solid #dbe3f0;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #eff6ff;
+
+  border-color: #93c5fd;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   RESUME FORM CARD
+========================================= */
+
+.resume-card {
+  max-width: 1000px;
+
+  margin: 0 auto 25px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  padding: 35px;
+
+  border-radius: 18px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.06),
+    0 2px 5px rgba(15, 23, 42, 0.03);
+}
+
+.resume-card h2 {
+  color: #1d4ed8;
+
+  margin: 26px 0 18px;
+
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  font-size: 19px;
+
+  font-weight: 700;
+}
+
+.resume-card h2:first-child {
+  margin-top: 0;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 22px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  font-weight: 600;
+
+  color: #334155;
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 10px;
+
+  box-sizing: border-box;
+
+  font-size: 14px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #334155;
+
+  background: #ffffff;
+
+  transition: all 0.2s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+  border-color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-group textarea {
+  min-height: 110px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.save-btn {
+  width: 100%;
+
+  border: none;
+
+  border-radius: 10px;
+
+  padding: 13px 22px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+
+  margin-top: 8px;
+
+  box-shadow:
+    0 5px 14px rgba(37, 99, 235, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+.save-btn:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================
+   RESUME PREVIEW
+========================================= */
+
+.resume-preview {
+  max-width: 1000px;
+
+  margin: 0 auto 25px;
+
+  background: #ffffff;
+
+  padding: 40px;
+
+  border-radius: 18px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.06),
+    0 2px 5px rgba(15, 23, 42, 0.03);
+}
+
+
+/* =========================================
+   PREVIEW HEADER
+========================================= */
+
+.preview-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 20px;
+
+  border-bottom: 2px solid #2563eb;
+
+  padding-bottom: 20px;
+
+  margin-bottom: 28px;
+}
+
+.preview-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 29px;
+
+  font-weight: 700;
+}
+
+.preview-header p {
+  color: #64748b;
+
+  margin: 7px 0;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   EDIT BUTTON
+========================================= */
+
+.edit-btn {
+  border: 1px solid #dbeafe;
+
+  border-radius: 9px;
+
+  padding: 9px 15px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #dbeafe;
+
+  border-color: #bfdbfe;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   RESUME SECTIONS
+========================================= */
+
+.resume-preview section {
+  margin-bottom: 27px;
+}
+
+.resume-preview section:last-child {
+  margin-bottom: 0;
+}
+
+.resume-preview section h3 {
+  color: #1d4ed8;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  padding-bottom: 8px;
+
+  margin: 0 0 12px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.resume-preview section p {
+  color: #475569;
+
+  line-height: 1.7;
+
+  font-size: 14px;
+
+  margin: 0;
+
+  white-space: pre-line;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .resume-page {
+    padding: 30px 25px 50px;
+  }
+
+  .resume-card,
+  .resume-preview {
+    padding: 30px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .resume-page {
+    padding: 22px 15px 40px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .page-header h1 {
+    font-size: 27px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .resume-card,
+  .resume-preview {
+    padding: 24px 20px;
+
+    border-radius: 14px;
+  }
+
+  .preview-header {
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .preview-header h2 {
+    font-size: 25px;
+  }
+
+  .edit-btn {
+    align-self: flex-start;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+
+  .resume-page {
+    padding: 18px 12px 35px;
+  }
+
+  .resume-card,
+  .resume-preview {
+    padding: 20px 16px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+
+  .resume-card h2 {
+    font-size: 18px;
+  }
+
+  .preview-header h2 {
+    font-size: 23px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 13px;
+  }
+}
+

@@ -1,0 +1,782 @@
+/* =========================================
+   SMART HIRE - SKILL ANALYZER PAGE
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.skill-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7ff 0%, #eef4ff 100%);
+  padding: 35px 50px 60px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1e293b;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.page-header {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.page-header p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.back-btn {
+  text-decoration: none;
+  background: #ffffff;
+  color: #2563eb;
+
+  padding: 11px 18px;
+  border-radius: 10px;
+
+  border: 1px solid #dbe3f0;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================
+   MAIN CARDS
+========================================= */
+
+.analyzer-card,
+.result-card,
+.history-card {
+  max-width: 1000px;
+  margin: 0 auto 25px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.07),
+    0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.analyzer-card {
+  padding: 38px;
+}
+
+.result-card {
+  padding: 38px;
+}
+
+.history-card {
+  padding: 32px 38px;
+}
+
+
+/* =========================================
+   ANALYZER CARD
+========================================= */
+
+.analyzer-card h2 {
+  margin: 0 0 8px;
+
+  color: #0f172a;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.description {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+
+  margin: 0 0 28px;
+}
+
+
+/* =========================================
+   INPUT GROUP
+========================================= */
+
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input-group textarea {
+  width: 100%;
+  min-height: 115px;
+
+  padding: 15px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #334155;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+
+  resize: vertical;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+.input-group textarea:hover {
+  border-color: #94a3b8;
+}
+
+.input-group textarea:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.error-message {
+  background: #fef2f2;
+  color: #dc2626;
+
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+
+  padding: 11px 14px;
+
+  margin: 10px 0 18px;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   ANALYZE BUTTON
+========================================= */
+
+.analyze-btn {
+  width: 100%;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+
+  color: #ffffff;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 14px 22px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 14px rgba(37, 99, 235, 0.20);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.28);
+}
+
+.analyze-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.analyze-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+
+/* =========================================
+   RESULT HEADER
+========================================= */
+
+.result-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 25px;
+}
+
+.result-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.result-header p {
+  margin: 6px 0 0;
+
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   PERCENTAGE
+========================================= */
+
+.percentage {
+  flex-shrink: 0;
+
+  width: 82px;
+  height: 82px;
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  border: 6px solid #dbeafe;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  box-shadow:
+    0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.progress-container {
+  width: 100%;
+  height: 10px;
+
+  background: #e2e8f0;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin: 25px 0 30px;
+}
+
+.progress-bar {
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  border-radius: 20px;
+
+  transition: width 0.5s ease;
+}
+
+
+/* =========================================
+   SKILL RESULTS
+========================================= */
+
+.skill-results {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+}
+
+.skill-section {
+  padding: 22px;
+
+  border-radius: 13px;
+
+  border: 1px solid #e2e8f0;
+
+  background: #f8fafc;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.skill-section:hover {
+  border-color: #bfdbfe;
+
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.skill-section h3 {
+  margin: 0 0 16px;
+
+  color: #334155;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   SKILL LIST
+========================================= */
+
+.skill-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.skill {
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.skill.matched {
+  background: #dcfce7;
+  color: #166534;
+
+  border: 1px solid #bbf7d0;
+}
+
+.skill.missing {
+  background: #fee2e2;
+  color: #991b1b;
+
+  border: 1px solid #fecaca;
+}
+
+.no-skills {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   HISTORY CARD
+========================================= */
+
+.history-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 15px;
+}
+
+.history-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.history-header p {
+  margin: 6px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.history-count {
+  flex-shrink: 0;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  padding: 7px 13px;
+
+  border-radius: 20px;
+
+  border: 1px solid #dbeafe;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   HISTORY ITEM
+========================================= */
+
+.history-item {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 19px 5px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-info h3 {
+  margin: 0 0 6px;
+
+  color: #334155;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.history-info p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   HISTORY SCORE
+========================================= */
+
+.history-score {
+  flex-shrink: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 80px;
+
+  padding: 8px 12px;
+
+  background: #eff6ff;
+
+  border-radius: 10px;
+
+  border: 1px solid #dbeafe;
+}
+
+.history-score strong {
+  color: #2563eb;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.history-score span {
+  color: #64748b;
+
+  font-size: 11px;
+
+  margin-top: 2px;
+}
+
+
+/* =========================================
+   EMPTY HISTORY
+========================================= */
+
+.history-card:empty {
+  display: none;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .skill-page {
+    padding: 30px 25px 50px;
+  }
+
+  .page-header {
+    max-width: 100%;
+  }
+
+  .analyzer-card,
+  .result-card,
+  .history-card {
+    max-width: 100%;
+  }
+
+  .skill-results {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .skill-page {
+    padding: 25px 20px 45px;
+  }
+
+  .page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .analyzer-card,
+  .result-card,
+  .history-card {
+    padding: 26px 22px;
+
+    border-radius: 15px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .analyzer-card h2 {
+    font-size: 22px;
+  }
+
+  .result-header {
+    align-items: flex-start;
+  }
+
+  .percentage {
+    width: 72px;
+    height: 72px;
+
+    font-size: 18px;
+  }
+
+  .history-header {
+    align-items: flex-start;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .skill-page {
+    padding: 20px 14px 35px;
+  }
+
+  .page-header h1 {
+    font-size: 25px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+  }
+
+  .back-btn {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .analyzer-card,
+  .result-card,
+  .history-card {
+    padding: 21px 17px;
+
+    border-radius: 14px;
+  }
+
+  .analyzer-card h2 {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .input-group textarea {
+    min-height: 105px;
+
+    padding: 13px;
+
+    font-size: 13px;
+  }
+
+  .analyze-btn {
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+
+  .result-header {
+    gap: 15px;
+  }
+
+  .result-header h2 {
+    font-size: 19px;
+  }
+
+  .percentage {
+    width: 62px;
+    height: 62px;
+
+    border-width: 5px;
+
+    font-size: 16px;
+  }
+
+  .skill-section {
+    padding: 18px;
+  }
+
+  .skill-section h3 {
+    font-size: 15px;
+  }
+
+  .history-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .history-item {
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 17px 3px;
+  }
+
+  .history-info h3 {
+    font-size: 14px;
+  }
+
+  .history-info p {
+    font-size: 12px;
+  }
+
+  .history-score {
+    min-width: 65px;
+
+    padding: 7px 9px;
+  }
+
+  .history-score strong {
+    font-size: 17px;
+  }
+}

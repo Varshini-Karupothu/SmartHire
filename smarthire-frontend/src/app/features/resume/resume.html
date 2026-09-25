@@ -1,0 +1,171 @@
+<div class="resume-page">
+
+  <div class="page-header">
+    <div>
+      <h1>📄 Resume Management</h1>
+      <p>Create and manage your professional resume</p>
+    </div>
+
+    <a routerLink="/dashboard" class="back-btn">← Dashboard</a>
+  </div>
+
+  @if (!saved) {
+
+    <div class="resume-card">
+
+      <h2>Personal Information</h2>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            [(ngModel)]="resume.name"
+            placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            [(ngModel)]="resume.email"
+            placeholder="Enter your email">
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Phone</label>
+          <input
+            type="tel"
+            [(ngModel)]="resume.phone"
+            placeholder="Enter your phone number">
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input
+            type="text"
+            [(ngModel)]="resume.location"
+            placeholder="e.g. Hyderabad, India">
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label>Professional Summary</label>
+        <textarea
+          [(ngModel)]="resume.summary"
+          placeholder="Write a short professional summary...">
+        </textarea>
+      </div>
+
+      <h2>Education</h2>
+
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="resume.education"
+          placeholder="Example: B.Tech in Computer Science, ABC University, 2024-2028">
+        </textarea>
+      </div>
+
+      <h2>Skills</h2>
+
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="resume.skills"
+          placeholder="Example: Java, Python, Angular, SQL, Spring Boot">
+        </textarea>
+      </div>
+
+      <h2>Projects</h2>
+
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="resume.projects"
+          placeholder="Describe your projects...">
+        </textarea>
+      </div>
+
+      <h2>Certifications</h2>
+
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="resume.certifications"
+          placeholder="Example: AWS Cloud Practitioner, Java Certification">
+        </textarea>
+      </div>
+
+      <h2>Experience</h2>
+
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="resume.experience"
+          placeholder="Describe your internships or work experience...">
+        </textarea>
+      </div>
+
+      <button
+        class="save-btn"
+        (click)="saveResume()">
+        💾 Save Resume
+      </button>
+
+    </div>
+
+  } @else {
+
+    <div class="resume-preview">
+
+      <div class="preview-header">
+        <div>
+          <h2>{{ resume.name }}</h2>
+          <p>{{ resume.email }} • {{ resume.phone }}</p>
+          <p>{{ resume.location }}</p>
+        </div>
+
+        <button
+          class="edit-btn"
+          (click)="editResume()">
+          ✏️ Edit Resume
+        </button>
+      </div>
+
+      <section>
+        <h3>Professional Summary</h3>
+        <p>{{ resume.summary }}</p>
+      </section>
+
+      <section>
+        <h3>Education</h3>
+        <p>{{ resume.education }}</p>
+      </section>
+
+      <section>
+        <h3>Skills</h3>
+        <p>{{ resume.skills }}</p>
+      </section>
+
+      <section>
+        <h3>Projects</h3>
+        <p>{{ resume.projects }}</p>
+      </section>
+
+      <section>
+        <h3>Certifications</h3>
+        <p>{{ resume.certifications }}</p>
+      </section>
+
+      <section>
+        <h3>Experience</h3>
+        <p>{{ resume.experience }}</p>
+      </section>
+
+    </div>
+
+  }
+
+</div>
