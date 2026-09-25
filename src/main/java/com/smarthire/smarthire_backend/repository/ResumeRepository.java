@@ -1,0 +1,13 @@
+package com.smarthire.smarthire_backend.repository;
+
+import com.smarthire.smarthire_backend.entity.Resume;
+import com.smarthire.smarthire_backend.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface ResumeRepository extends JpaRepository<Resume, Long> {
+
+    Optional<Resume> findByUser(User user);
+
+}
