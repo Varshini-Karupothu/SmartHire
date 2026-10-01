@@ -11,7 +11,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/applications")
-@CrossOrigin(origins = "http://localhost:4200")
 public class JobApplicationController {
 
     private final JobApplicationService jobApplicationService;

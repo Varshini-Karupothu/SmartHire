@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
-
-  private apiUrl = 'http://localhost:8080/api/test';
+  private apiUrl = `${environment.apiUrl}/api/test`;
 
   constructor(private http: HttpClient) {}
 
-  getProtectedMessage(): Observable<string> {
-    return this.http.get(`${this.apiUrl}/protected`, {
+  testBackend(): Observable<string> {
+    return this.http.get(this.apiUrl, {
       responseType: 'text'
     });
   }

@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,7 @@ export class Register {
   loading = false;
 
   private apiUrl =
-    'http://localhost:8080/api/auth/register';
+    `${environment.apiUrl}/api/auth/register`;
 
   constructor(
     private fb: FormBuilder,

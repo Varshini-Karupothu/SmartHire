@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface JobApplication {
   id?: number;
@@ -16,7 +17,7 @@ export interface JobApplication {
 export class ApplicationService {
 
   private apiUrl =
-    'http://localhost:8080/api/applications';
+    `${environment.apiUrl}/api/applications`;
 
   constructor(private http: HttpClient) {}
 
@@ -65,4 +66,3 @@ export class ApplicationService {
   }
 
 }
-

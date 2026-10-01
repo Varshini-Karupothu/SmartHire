@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, timeout, catchError, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface MockQuestion {
   id?: number;
@@ -35,7 +36,7 @@ export interface MockEvaluationResponse {
 export class MockInterviewService {
 
   private apiUrl =
-    'http://localhost:8080/api/mock-interview';
+    `${environment.apiUrl}/api/mock-interview`;
 
   constructor(private http: HttpClient) {}
 
@@ -102,6 +103,3 @@ export class MockInterviewService {
       );
   }
 }
-
-
-

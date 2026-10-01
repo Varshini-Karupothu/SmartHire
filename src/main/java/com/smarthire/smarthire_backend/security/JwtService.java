@@ -2,6 +2,7 @@ package com.smarthire.smarthire_backend.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,11 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY =
-            "SmartHireSecretKeyForJWTAuthentication2026Secure";
-
     private final SecretKey key;
 
-    public JwtService() {
+    public JwtService(@Value("${JWT_SECRET}") String secretKey) {
         key = Keys.hmacShaKeyFor(
-                SECRET_KEY.getBytes(StandardCharsets.UTF_8)
+                secretKey.getBytes(StandardCharsets.UTF_8)
         );
     }
 
@@ -74,5 +72,3 @@ public class JwtService {
         return expiration.before(new Date());
     }
 }
-
-

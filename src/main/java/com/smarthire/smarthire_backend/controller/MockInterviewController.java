@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mock-interview")
-@CrossOrigin(origins = "http://localhost:4200")
 public class MockInterviewController {
 
     private final MockInterviewService mockInterviewService;

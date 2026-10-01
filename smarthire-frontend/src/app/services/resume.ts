@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Resume {
   id?: number;
@@ -22,7 +23,7 @@ export interface Resume {
 export class ResumeService {
 
   private apiUrl =
-    'http://localhost:8080/api/resume';
+    `${environment.apiUrl}/api/resume`;
 
   constructor(private http: HttpClient) {}
 
@@ -46,3 +47,4 @@ export class ResumeService {
   }
 
 }
+
