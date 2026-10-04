@@ -1,6 +1,5 @@
 package com.smarthire.smarthire_backend.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController {
 
-    @GetMapping("/protected")
-    public String protectedEndpoint() {
-        return "JWT Authentication Successful!";
-    }
+@GetMapping("/protected")
+public String protectedEndpoint() {
+    return "JWT Authentication Successful!";
 }
+
+}
+
