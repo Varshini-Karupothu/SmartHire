@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://YOUR-RAILWAY-BACKEND-URL'
+  apiUrl: 'https://smarthire-production-1fe4.up.railway.app'
 };
