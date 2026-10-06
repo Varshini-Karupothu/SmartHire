@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 @Service
 public class OpenAIService {
 
-    @Value("${openai.api.key}")
+    @Value("${openai.api.key:}")
     private String apiKey;
 
     @Value("${openai.model:gpt-5.6-luna}")
